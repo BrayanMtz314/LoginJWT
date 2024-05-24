@@ -5,17 +5,26 @@ import { Observable, catchError, throwError, BehaviorSubject, tap, map } from 'r
 import { User } from './user';
 import { environments } from '../../../environments/environments';
 import { isPlatformBrowser } from '@angular/common';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  EMPTY_USER: User = {
+    id: 0,
+    username: '',
+    lastname: '',
+    firstname: '',
+    country: ''
+  };
+
    currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
    currentUserData : BehaviorSubject<String> = new BehaviorSubject<String>("");
+   currentUser : BehaviorSubject<User> = new BehaviorSubject<User>(this.EMPTY_USER); 
 
-
-  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: object) {
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: object, private userService: UserService) {
     if(isPlatformBrowser(this.platformId)){
       this.currentUserLoginOn = new BehaviorSubject<boolean>(sessionStorage.getItem("token")!=null)
       this.currentUserData = new BehaviorSubject<String>(sessionStorage.getItem("token") || "");
@@ -23,6 +32,15 @@ export class LoginService {
    }
 
   login(credentials: LoginRequest): Observable<any>{
+    this.userService.getUserByUsername(credentials.username).subscribe({
+      next: (user: User) => {
+        this.currentUser.next(user);
+        console.log(this.currentUser);
+      },
+      error: (error) => {
+        console.error('Error encontrando al usuario: ', error);
+      }
+    });
     return this.http.post<any>(environments.urlHost+"auth/login", credentials).pipe(
       tap( (userData) =>{
         if(isPlatformBrowser(this.platformId)){
@@ -65,6 +83,7 @@ export class LoginService {
   get userToken():String{
     return this.currentUserData.value;
   }
+
 
 
 }

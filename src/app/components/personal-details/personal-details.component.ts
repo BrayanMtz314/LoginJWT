@@ -16,11 +16,12 @@ import { Router } from '@angular/router';
   templateUrl: './personal-details.component.html',
   styleUrl: './personal-details.component.css'
 })
-export class PersonalDetailsComponent implements OnInit {
+export class PersonalDetailsComponent {
   errorMessage: String = "";
   user?: User;
   userLoginOn: boolean = false;
   editMode: boolean = false;
+  username: String= "";
 
 
   registerForm = this.formBuilder.group({
@@ -31,7 +32,10 @@ export class PersonalDetailsComponent implements OnInit {
   })
 
   constructor(private userService: UserService, private formBuilder: FormBuilder, private loginService: LoginService){
-    this.userService.getUser(environments.userId).subscribe({
+    loginService.currentUser.subscribe((userData)=>{
+      this.username = userData.username;
+    });
+    this.userService.getUserByUsername(this.username).subscribe({
       next: (userData) => {
         this.user = userData;
         this.registerForm.controls.id.setValue(userData.id.toString());
@@ -54,9 +58,7 @@ export class PersonalDetailsComponent implements OnInit {
   })
 
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
 
   get firstname(){
     return this.registerForm.controls.firstname;
