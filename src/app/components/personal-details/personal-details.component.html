@@ -1,0 +1,76 @@
+@if(errorMessage.length!=0){
+<p>{{ errorMessage }}</p>
+} 
+
+@if(userLoginOn && !editMode || !userLoginOn){
+    <p><b> Nombre: </b>  {{user?.firstname}} </p>
+    <p><b> apellido: </b>  {{user?.lastname}} </p>
+    <p><b> Pais: </b>  {{user?.country}} </p>
+    @if(userLoginOn && !editMode){
+    <button (click)="editMode=true" class="btn btn-dark">
+        Editar datos Personales
+    </button>
+    }
+}
+
+
+
+@if(userLoginOn && editMode){
+<form [formGroup]="registerForm" (ngSubmit)="savePersonaDetailsData()">
+   <!--Entrada de datos de Nombre-->
+  <div class="form-group row">
+    <label for="inputFirstName" class="col-sm-1 col-form-label">Nombre</label>
+    <div class="col-sm-11">
+      <input
+        type="text"
+        formControlName="firstname"
+        class="form-control"
+        id="inputFirstName"
+      />
+      @if(firstname.invalid && (firstname.dirty || firstname.touched)){
+      <div class="text-danger">
+        @if(firstname.errors?.['required']){ El nombre es requerido }
+      </div>
+      }
+    </div>
+  </div>
+  <!--Entrada de datos de Apellido-->
+  <div class="form-group row">
+    <label for="inputLastName" class="col-sm-1 col-form-label">Apellido</label>
+    <div class="col-sm-11">
+      <input
+        type="text"
+        formControlName="lastname"
+        class="form-control"
+        id="inputLastName"
+      />
+      @if(lastname.invalid && (lastname.dirty || lastname.touched)){
+      <div class="text-danger">
+        @if(lastname.errors?.['required']){ El Apellido es requerido }
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputCountry" class="col-sm-1 col-form-label">Pais</label>
+    <div class="col-sm-11">
+      <input
+        type="text"
+        formControlName="country"
+        class="form-control"
+        id="inputCountry"
+      />
+      @if(country.invalid && (country.dirty || country.touched)){
+      <div class="text-danger">
+        @if(country.errors?.['required']){ El pais es requerido }
+      </div>
+      }
+    </div>
+  </div>
+  <!--Boton para guardar y ejecutar submit-->
+  <button type="submit" class="btn btn-dark mt-3">Guardar</button>
+  <a class="btn btn-danger mt-3" (click)="editMode=false">Cancelar</a>
+
+</form>
+}
