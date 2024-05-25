@@ -2,3 +2,15 @@ header {
     background: url(https://scontent.fntr6-2.fna.fbcdn.net/v/t1.6435-9/78971057_2828295157210304_1410000195197861888_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=EA6pjXQ3WoIQ7kNvgHKkvbU&_nc_ht=scontent.fntr6-2.fna&oh=00_AYDxrNG6FoAIgXTImGGJgyZAn7WqKLuVrgkrpxYznVSGiQ&oe=667902E4);
     background-size: contain;
 }
+
+.roboto-black {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  .roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }

@@ -29,16 +29,27 @@
   <div class="row">
     <div class="container">
       <div class="row">
-        @for (evento of eventos; track $index) {
+        @for (evento of this.eventos; track $index) {
         <div class="col-md-3 mb-2">
           <div class="card text-center m-2" style="width: 100%">
             <div class="card-body d-flex">
-              <div></div>
               <div>
                 <h5 class="card-title">{{ evento.nombre }}</h5>
                 <p class="card-text">{{ evento.ubicacion }}</p>
                 <p class="card-text">{{ evento.fecha }}</p>
-                <a href="#" class="btn btn-primary">Informacion del evento</a>
+                <a [routerLink]="['/evento', evento.id]" class="btn btn-primary"
+                  >Informacion del evento</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        } @if(userLoginOn){
+        <div class="col-md-3 mb-2">
+          <div class="card text-center m-2" style="width: 100%">
+            <div class="card-body d-flex">
+              <div>
+                <a class="btn btn-primary">Nuevo evento</a>
               </div>
             </div>
           </div>

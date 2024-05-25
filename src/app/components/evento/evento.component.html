@@ -1,1 +1,34 @@
-<p>evento works!</p>
+<div class="container">
+  <div class="container">
+    <div class="row d-flex" style="background-color: #d9e4e0">
+      <div class="col-md-8 text-center" style="border-right: 1px solid black">
+        <h3>{{ evento.nombre }}</h3>
+        <p>{{ evento.descripcion }}</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <button type="button" class="btn btn-primary">
+          Registrarse en evento
+        </button>
+        <hr />
+        <h3>Fecha</h3>
+        <p>{{ evento.fecha }}</p>
+        <hr />
+        <h3>Hora</h3>
+        <p>{{ evento.hora }}</p>
+        <hr />
+        <h3>Lugar</h3>
+        <p>{{ evento.ubicacion }}</p>
+      </div>
+    </div>
+  </div>
+@if(userLoginOn){
+    <div class="card mt-4">
+        <div class="card-header">
+          Datos Personales
+        </div>
+        <div class="card-body m-0">
+            <app-personal-details></app-personal-details>
+        </div>
+      </div>
+}
+</div>
