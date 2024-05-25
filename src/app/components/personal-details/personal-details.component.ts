@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../services/auth/user';
+import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user/user.service';
 import { environments } from '../../../environments/environments';
 import { nextTick } from 'process';

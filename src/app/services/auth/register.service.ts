@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { RegisterRequest } from './registerRequest';
+import { RegisterRequest } from '../../interfaces/registerRequest';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environments } from '../../../environments/environments';
 

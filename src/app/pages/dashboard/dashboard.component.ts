@@ -2,13 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavComponent } from '../../shared/nav/nav.component';
 import { LoginService } from '../../services/auth/login.service';
 import { nextTick } from 'process';
-import { User } from '../../services/auth/user';
+import { User } from '../../interfaces/user';
 import { PersonalDetailsComponent } from '../../components/personal-details/personal-details.component';
+import { EventosComponent } from '../../components/eventos/eventos.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavComponent, PersonalDetailsComponent],
+  imports: [NavComponent, PersonalDetailsComponent, EventosComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

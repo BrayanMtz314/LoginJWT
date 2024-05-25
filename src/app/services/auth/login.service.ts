@@ -1,8 +1,8 @@
 import { Inject, Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { LoginRequest } from './loginRequest';
+import { LoginRequest } from '../../interfaces/loginRequest';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError, BehaviorSubject, tap, map } from 'rxjs';
-import { User } from './user';
+import { User } from '../../interfaces/user';
 import { environments } from '../../../environments/environments';
 import { isPlatformBrowser } from '@angular/common';
 import { UserService } from '../user/user.service';

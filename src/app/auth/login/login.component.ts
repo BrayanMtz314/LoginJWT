@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/auth/login.service';
-import { LoginRequest } from '../../services/auth/loginRequest';
+import { LoginRequest } from '../../interfaces/loginRequest';
 
 
 @Component({

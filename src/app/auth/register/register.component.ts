@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../services/auth/register.service';
-import { RegisterRequest } from '../../services/auth/registerRequest';
+import { RegisterRequest } from '../../interfaces/registerRequest';
+import { NavComponent } from '../../shared/nav/nav.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NavComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
