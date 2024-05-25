@@ -4,11 +4,12 @@ import { EventoService } from '../../services/evento/evento.service';
 import { Evento } from '../../interfaces/evento';
 import { PersonalDetailsComponent } from '../personal-details/personal-details.component';
 import { LoginService } from '../../services/auth/login.service';
+import { PersonasRegistradasComponent } from '../personas-registradas/personas-registradas.component';
 
 @Component({
   selector: 'app-evento',
   standalone: true,
-  imports: [PersonalDetailsComponent],
+  imports: [PersonalDetailsComponent, PersonasRegistradasComponent],
   templateUrl: './evento.component.html',
   styleUrl: './evento.component.css'
 })

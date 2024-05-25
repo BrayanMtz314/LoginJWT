@@ -16,17 +16,18 @@ export class EventosComponent implements OnInit{
   userLoginOn: Boolean = false;
 
   constructor(private eventoService: EventoService, private loginService: LoginService){
-    eventoService.eventos.subscribe({
-      next: (eventos)=>{
-        this.eventos = eventos;
-      }
-    });
+
   }
 
   ngOnInit(): void {
     this.loginService.currentUserLoginOn.subscribe({
       next: (userLoginOn)=>{
         this.userLoginOn = userLoginOn;
+      }
+    });
+    this.eventoService.eventos.subscribe({
+      next: (eventos)=>{
+        this.eventos = eventos;
       }
     });
   }

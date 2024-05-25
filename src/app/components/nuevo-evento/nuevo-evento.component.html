@@ -1,0 +1,80 @@
+<div class="container">
+  <form [formGroup]="EventForm" (ngSubmit)="onSubmit()" class="register-form">
+    <div class="form-group">
+      <label for="nombre">Nombre de Evento</label>
+      <input
+        type="text"
+        formControlName="nombre"
+        class="form-control"
+        id="nombre"
+        placeholder="Titulo de evento"
+      />
+    </div>
+
+    <div class="form-group">
+        <label for="descripcion">Descripcion</label>
+        <textarea
+          formControlName="descripcion"
+          class="form-control"
+          id="descripcion"
+          rows="4"
+          placeholder="Descripcion del evento"
+        ></textarea>
+      </div>
+
+    <div class="form-group">
+      <label for="fecha">Fecha</label>
+      <input
+        type="text"
+        formControlName="fecha"
+        class="form-control"
+        id="fecha"
+        placeholder="DD/MM/AAAA"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="hora">Hora</label>
+      <input
+        type="text"
+        formControlName="hora"
+        class="form-control"
+        id="hora"
+        placeholder="00:00"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="categoria">Categoria</label>
+      <input
+        type="text"
+        formControlName="categoria"
+        class="form-control"
+        id="categoria"
+        placeholder="categoria"
+      />
+    </div>
+    
+    <div class="form-group">
+        <label for="ubicacion">ubicacion</label>
+        <input
+          type="text"
+          formControlName="ubicacion"
+          class="form-control"
+          id="ubicacion"
+          placeholder="ubicacion"
+        />
+      </div>
+
+    <button
+      type="submit"
+      [disabled]="EventForm.invalid"
+      class="btn btn-primary mt-4"
+    >
+      Nuevo Evento
+    </button>
+    @if(EventError){
+    <div class="text-danger mt-3">{{ EventError }}</div>
+    }
+  </form>
+</div>

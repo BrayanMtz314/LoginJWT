@@ -24,6 +24,12 @@ export class UserService {
     )
   }
 
+  getAllusers():Observable<User[]>{
+    return this.http.get<User[]>(environments.urlApi+"user/users").pipe(
+      catchError(this.handleError)
+    )
+  }
+
   updateUser(userRequest:User):Observable<any>{
     return this.http.put(environments.urlApi+"user",userRequest).pipe(
       catchError(this.handleError)
