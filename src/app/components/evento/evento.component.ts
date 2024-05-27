@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { EventoService } from '../../services/evento/evento.service';
 import { Evento } from '../../interfaces/evento';
 import { PersonalDetailsComponent } from '../personal-details/personal-details.component';
@@ -9,36 +9,53 @@ import { PersonasRegistradasComponent } from '../personas-registradas/personas-r
 @Component({
   selector: 'app-evento',
   standalone: true,
-  imports: [PersonalDetailsComponent, PersonasRegistradasComponent],
+  imports: [PersonalDetailsComponent, PersonasRegistradasComponent, RouterLink],
   templateUrl: './evento.component.html',
   styleUrl: './evento.component.css'
 })
 export class EventoComponent implements OnInit{
-  userLoginOn: Boolean = false;
-
+  userLoginOn: boolean = false; // Cambié 'Boolean' a 'boolean' (tipo primitivo de TypeScript)
   evento: Evento = {
-    id: 2,
-    nombre: 'Reunion de Consejo de quimica',
-    descripcion:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, optio suscipit. Rerum pariatur iure, ea sequi, explicabo soluta quas dolor distinctio minima error officiis. Officia harum tempora laudantium obcaecati doloremque.' +
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, optio suscipit. Rerum pariatur iure, ea sequi, explicabo soluta quas dolor distinctio minima error officiis. Officia harum tempora laudantium obcaecati doloremque.',
-    fecha: '20/11/2024',
-    hora: '05:00 PM',
-    categoria: 'Academica',
-    ubicacion: 'Foro principal',
-  }
-  constructor(router: ActivatedRoute, eventosService: EventoService, private loginService: LoginService){
+    id: 0,
+    nombre: '',
+    descripcion: '',
+    fecha: '',
+    hora: '',
+    categoria: '',
+    ubicacion: ''
+  };
 
-  }
-
-  ngOnInit(): void {
-    this.loginService.currentUserLoginOn.subscribe({
-      next: (userLoginOn)=>{
-        this.userLoginOn = userLoginOn;
+  constructor(
+    private router: ActivatedRoute, // Agregué 'private' para inyección de dependencias
+    private eventosService: EventoService, // Agregué 'private' para inyección de dependencias
+    private loginService: LoginService
+  ) {
+    this.router.params.subscribe(params => {
+      const id = params['id'];
+      if (id) {
+        this.eventosService.getEventById(id).subscribe({
+          next: (evento) => {
+            this.evento = evento;
+          },
+          error: (err) => {
+            console.error('Error fetching event:', err);
+          }
+        });
+      } else {
+        console.error('No event ID provided in the route');
       }
     });
   }
 
-
+  ngOnInit(): void {
+    this.loginService.currentUserLoginOn.subscribe({
+      next: (userLoginOn) => {
+        this.userLoginOn = userLoginOn;
+      },
+      error: (err) => {
+        console.error('Error fetching user login status:', err);
+      }
+    });
+  }
   
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from '../../interfaces/evento';
 import { EventoService } from '../../services/evento/evento.service';
-import { RouterLink } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../services/auth/login.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class EventosComponent implements OnInit{
   eventos: Evento[] = [];
   userLoginOn: Boolean = false;
 
-  constructor(private eventoService: EventoService, private loginService: LoginService){
+  constructor(private eventoService: EventoService, private loginService: LoginService, private route: Router){
 
   }
 
@@ -35,6 +35,19 @@ export class EventosComponent implements OnInit{
   filtrar(){
 
   }
+
+  borrarEvento(id: number): void {
+    this.eventoService.deleteEvent(id).subscribe({
+      next: () => {
+        console.log(`Evento con id ${id} eliminado.`);
+        window.location.reload();
+      },
+      error: err => {
+        console.error('Error eliminando el evento:', err);
+      }
+    });
+  }
+
 
 
 }

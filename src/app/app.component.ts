@@ -7,13 +7,14 @@ import { NavComponent } from './shared/nav/nav.component';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { EventoComponent } from './components/evento/evento.component';
 import { NuevoEventoComponent } from './components/nuevo-evento/nuevo-evento.component';
+import { UpdateEventComponent } from './components/update-event/update-event.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, FooterComponent, DashboardComponent, 
-    NavComponent, PersonalDetailsComponent, EventoComponent, NuevoEventoComponent],
+    NavComponent, PersonalDetailsComponent, EventoComponent, NuevoEventoComponent, UpdateEventComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

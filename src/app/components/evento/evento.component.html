@@ -6,9 +6,20 @@
         <p>{{ evento.descripcion }}</p>
       </div>
       <div class="col-md-4 text-center">
-        <button type="button" class="btn btn-primary">
-          Registrarse en evento
-        </button>
+        <div class="row d-flex">
+          @if (userLoginOn) {
+          <button type="button" class="btn btn-primary col-6">
+            Registrarse en evento
+          </button>
+          <a
+            [routerLink]="['/eventoUpdate', evento.id]"
+            class="btn btn-success col-6"
+            >Modificar Evento</a
+          >
+          }@else {
+            <h3>Inicia session para asistir!!</h3>
+          }
+        </div>
         <hr />
         <h3>Fecha</h3>
         <p>{{ evento.fecha }}</p>
@@ -21,14 +32,12 @@
       </div>
     </div>
   </div>
-@if(userLoginOn){
-    <div class="card mt-4">
-        <div class="card-header text-center">
-          Personas Registradas
-        </div>
-        <div class="card-body m-0">
-            <app-personas-registradas></app-personas-registradas>
-        </div>
-      </div>
-}
+  @if(userLoginOn){
+  <div class="card mt-4">
+    <div class="card-header text-center">Personas Registradas</div>
+    <div class="card-body m-0">
+      <app-personas-registradas></app-personas-registradas>
+    </div>
+  </div>
+  }
 </div>

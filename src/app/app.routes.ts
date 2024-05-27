@@ -4,6 +4,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { EventoComponent } from './components/evento/evento.component';
 import { NuevoEventoComponent } from './components/nuevo-evento/nuevo-evento.component';
+import { UpdateEventComponent } from './components/update-event/update-event.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
@@ -11,5 +12,6 @@ export const routes: Routes = [
     {path: 'iniciar-sesion', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'evento/:id', component: EventoComponent},
-    {path: 'nuevo-evento', component: NuevoEventoComponent}
+    {path: 'nuevo-evento', component: NuevoEventoComponent},
+    {path: 'eventoUpdate/:id', component: UpdateEventComponent}
 ];
