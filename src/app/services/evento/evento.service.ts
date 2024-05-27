@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environments } from '../../../environments/environments';
 import { NewEventRequest } from '../../interfaces/new-event-request';
+import { User } from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +53,18 @@ export class EventoService{
 
   deleteEvent(id: number):Observable<any>{
     return this.http.get<any>(environments.urlApi + "evento/delete/" + id).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  registrarUsuario(eventoId: number, usuarioId: number): Observable<any>{
+    return this.http.get<any>(environments.urlApi + "evento/" + eventoId + "/usuarios/" + usuarioId).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  verUsuariosRegistrados(eventoId: number):Observable<User[]>{
+    return this.http.get<User[]>(environments.urlApi + 'evento/' + eventoId + "/usuarios").pipe(
       catchError(this.handleError)
     );
   }

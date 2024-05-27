@@ -34,6 +34,7 @@ export class LoginService {
   login(credentials: LoginRequest): Observable<any>{
     this.userService.getUserByUsername(credentials.username).subscribe({
       next: (user: User) => {
+        sessionStorage.setItem("log", user.username);
         this.currentUser.next(user);
         console.log(this.currentUser);
       },

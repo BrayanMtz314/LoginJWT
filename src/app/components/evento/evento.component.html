@@ -8,7 +8,7 @@
       <div class="col-md-4 text-center">
         <div class="row d-flex">
           @if (userLoginOn) {
-          <button type="button" class="btn btn-primary col-6">
+          <button type="button" class="btn btn-primary col-6" (click)="registrar(idPage, idUser)">
             Registrarse en evento
           </button>
           <a
@@ -36,7 +36,26 @@
   <div class="card mt-4">
     <div class="card-header text-center">Personas Registradas</div>
     <div class="card-body m-0">
-      <app-personas-registradas></app-personas-registradas>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of this.users; track $index) {
+          <tr>
+            <th scope="row">{{$index}}</th>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.country}}</td>
+          </tr>
+          }
+        </tbody>
+      </table>      
     </div>
   </div>
   }
